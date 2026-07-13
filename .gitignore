@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Environment variables (contains private keys! DANGER)
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Temporary uploads
+temp_uploads/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+*.log

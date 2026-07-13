@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThermoWise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        engineering: {
+                            500: '#3b82f6',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+        window.mermaid = mermaid;
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .msg-user { background: #1e3a8a; }
+        .msg-bot { background: #1e293b; border-left: 4px solid #3b82f6; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden text-slate-200">
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col pt-4 pb-4 px-8 items-center w-full">
+        <header class="w-full max-w-4xl py-4 flex justify-between items-center mb-4">
+            <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">ThermoWise</h1>
+            <div class="text-sm text-slate-400">Smith & Van Ness (2018) Engine</div>
+        </header>
+
+        <!-- Chat Container -->
+        <div id="chat-container" class="flex-1 w-full max-w-4xl overflow-y-auto space-y-6 pb-4 scroll-smooth">
+            <div class="msg-bot p-5 rounded-lg shadow-lg">
+                <p>Merhaba! Ben ThermoWise. Smith & Van Ness'in Kimya Mühendisliği Termodinamiği kitabına göre programlandım. Ne çözüyoruz bugün?</p>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="w-full max-w-4xl mt-4">
+            <div class="relative glass-panel rounded-xl overflow-hidden shadow-2xl flex items-center p-2">
+                <input type="file" id="file-input" class="hidden" accept=".pdf,.png,.jpg,.jpeg">
+                <button id="attach-btn" class="p-2 text-slate-400 hover:text-blue-400 transition-colors" title="Bölüm (Chapter) Dosyası Yükle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                </button>
+                <div class="flex-1 relative">
+                    <textarea id="user-input" class="w-full bg-transparent p-2 pr-12 resize-none focus:outline-none" rows="2" placeholder="Sorunu yaz ve istersen yan taraftan pdf'ini ekle..."></textarea>
+                    <div id="file-indicator" class="hidden absolute top-0 left-2 -mt-6 text-xs text-blue-400 bg-blue-900/50 px-2 py-1 rounded-full flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <span id="file-name">dosya.pdf</span>
+                        <button id="remove-file-btn" class="ml-1 hover:text-red-400 text-slate-300">✕</button>
+                    </div>
+                </div>
+                <button id="send-btn" class="bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-lg transition-colors ml-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
